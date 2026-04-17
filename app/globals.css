@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0908;
+  --foreground: #f7f2eb;
+  --stone: #f5f0e8;
+  --surface: #14110f;
+  --surface-muted: #1a1714;
+  --panel: #100e0d;
+  --line: rgba(255, 255, 255, 0.1);
+  --gold: #d8b87a;
+  --gold-soft: #c9aa71;
+  --smoke: #bdb3a7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-stone: var(--stone);
+  --color-surface: var(--surface);
+  --color-panel: var(--panel);
+  --color-gold: var(--gold);
+  --font-sans: "Manrope", "Manrope Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(216, 184, 122, 0.12), transparent 22%),
+    linear-gradient(180deg, #0d0b09 0%, #0a0807 45%, #0b0908 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(216, 184, 122, 0.32);
+  color: #140f09;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  color: transparent;
+}
+
+main {
+  min-height: calc(100vh - 320px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

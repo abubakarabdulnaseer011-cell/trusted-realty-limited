@@ -6,12 +6,12 @@ type VerificationRouteProps = {
   }>;
 };
 
-const GOOGLE_FILE_PATTERN = /^google[^/]+\.html$/i;
+const ROOT_HTML_FILE_PATTERN = /^[^/]+\.html?$/i;
 
 function createVerificationResponse(verificationFile: string) {
   return new Response(`google-site-verification: ${verificationFile}`, {
     headers: {
-      "Content-Type": "text/plain; charset=utf-8",
+      "Content-Type": "text/html; charset=utf-8",
       "Cache-Control": "no-store, max-age=0",
       "X-Robots-Tag": "noindex, nofollow",
     },
@@ -24,7 +24,7 @@ async function resolveVerificationFile(request: Request, params: VerificationRou
 
   console.log("[google-verification]", JSON.stringify({ verificationFile, userAgent }));
 
-  if (!GOOGLE_FILE_PATTERN.test(verificationFile)) {
+  if (!ROOT_HTML_FILE_PATTERN.test(verificationFile)) {
     console.warn("[google-verification] rejected", verificationFile);
     notFound();
   }

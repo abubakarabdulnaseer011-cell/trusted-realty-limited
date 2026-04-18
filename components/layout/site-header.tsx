@@ -39,10 +39,10 @@ export function SiteHeader() {
         <Container className="pt-4">
           <div
             className={cn(
-              "flex items-center justify-between rounded-full border px-4 py-3 transition duration-300 sm:px-6",
+              "flex items-center justify-between border px-4 py-3 transition duration-500 sm:px-6",
               overlayMode
-                ? "border-white/10 bg-black/18 shadow-[0_18px_60px_rgba(0,0,0,0.14)] backdrop-blur-md"
-                : "border-[#2f2923] bg-[#11100f]/92 shadow-[0_28px_60px_rgba(0,0,0,0.32)] backdrop-blur-xl",
+                ? "border-white/12 bg-black/12 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-md"
+                : "rounded-full border-[#2f2923] bg-[#11100f]/92 shadow-[0_28px_60px_rgba(0,0,0,0.32)] backdrop-blur-xl",
             )}
           >
             <Logo />
@@ -55,7 +55,7 @@ export function SiteHeader() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "text-sm text-[#e3dacc]/80 transition hover:text-white",
+                      "text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[#e3dacc]/78 transition hover:text-white",
                       isActive && "text-[#d8b87a]",
                     )}
                   >
@@ -67,7 +67,9 @@ export function SiteHeader() {
             <div className="hidden items-center gap-3 lg:flex">
               <Link
                 href="/contact?service=Real%20Estate%20Advisory"
-                className={buttonVariants({ variant: "secondary" })}
+                className={buttonVariants({
+                  variant: overlayMode ? "outline" : "secondary",
+                })}
               >
                 Talk to an Advisor
               </Link>

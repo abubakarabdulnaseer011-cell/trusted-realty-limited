@@ -302,6 +302,29 @@ export const investorHighlights = [
   },
 ] as const;
 
+export const diasporaTrustLayers = [
+  {
+    title: "Secure transactions from the first brief",
+    description:
+      "Every acquisition or leasing brief is approached with verification discipline, documentation awareness, and a clear respect for the risks overseas clients are trying to avoid.",
+  },
+  {
+    title: "Guided buying, not self-directed guesswork",
+    description:
+      "Diaspora homebuyers and investors receive structured guidance on city choice, asset fit, pricing logic, and the right next step before capital is committed.",
+  },
+  {
+    title: "Remote property sourcing with real screening",
+    description:
+      "Trusted Realty can shortlist, inspect, and coordinate virtual viewings around a defined mandate so distance does not become a quality or trust problem.",
+  },
+  {
+    title: "Documentation support that reduces uncertainty",
+    description:
+      "The company supports clients through paperwork expectations, transaction checkpoints, and the legal clarity needed to move with greater confidence.",
+  },
+] as const;
+
 export const journalEntries = [
   {
     title: "What premium buyers are prioritizing in Lagos this year",

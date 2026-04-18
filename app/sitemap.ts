@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 
+import { siteConfig } from "@/data/company";
 import { properties } from "@/data/properties";
 import { absoluteUrl } from "@/lib/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date(siteConfig.contentUpdatedAt);
   const routes: Array<{ path: string; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]; priority: number }> = [
     { path: "/", changeFrequency: "weekly", priority: 1 },
     { path: "/about", changeFrequency: "monthly", priority: 0.8 },
@@ -18,13 +20,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...routes.map((route) => ({
       url: absoluteUrl(route.path),
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
     ...properties.map((property) => ({
       url: absoluteUrl(`/properties/${property.slug}`),
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.7,
     })),

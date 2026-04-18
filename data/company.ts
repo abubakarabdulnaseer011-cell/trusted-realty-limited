@@ -12,11 +12,16 @@ export const siteConfig = {
   name: "TRUSTED REALTY LIMITED",
   shortName: "Trusted Realty",
   tagline: "Premium Homes. Trusted Deals.",
+  defaultTitle:
+    "Trusted Realty Limited | Premium Real Estate in Lagos, Abuja, Port Harcourt, Enugu, and Kano State",
   description:
     "Trusted Realty Limited delivers secure, transparent, and high-quality real estate solutions across Lagos, Abuja, Port Harcourt, Enugu, and Kano State.",
-  url: "https://trustedrealtylimited.vercel.app",
+  url: "https://trusted-realty-limited.vercel.app",
   email: "hello@trustedrealtylimited.com",
   phone: "+234 (0) 800 000 0000",
+  locale: "en_NG",
+  countryCode: "NG",
+  contentUpdatedAt: "2026-04-18T00:00:00.000Z",
   whatsappUrl:
     "https://wa.me/2348000000000?text=Hello%20Trusted%20Realty%20Limited%2C%20I%20would%20like%20to%20make%20an%20inquiry.",
   keywords: [

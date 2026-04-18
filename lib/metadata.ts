@@ -35,12 +35,12 @@ export function createMetadata({
   image = "/opengraph-image",
   keywords = [],
 }: CreateMetadataInput): Metadata {
-  const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
+  const socialTitle = title ? `${title} | ${siteConfig.shortName}` : siteConfig.defaultTitle;
   const canonical = absoluteUrl(path);
   const imageUrl = absoluteUrl(image);
 
   return {
-    title: fullTitle,
+    title: title ?? siteConfig.defaultTitle,
     description,
     keywords: [...siteConfig.keywords, ...keywords],
     alternates: {
@@ -48,9 +48,9 @@ export function createMetadata({
     },
     openGraph: {
       type: "website",
-      locale: "en_NG",
+      locale: siteConfig.locale,
       url: canonical,
-      title: fullTitle,
+      title: socialTitle,
       description,
       siteName: siteConfig.name,
       images: [
@@ -58,13 +58,13 @@ export function createMetadata({
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: fullTitle,
+          alt: socialTitle,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title: socialTitle,
       description,
       images: [imageUrl],
     },

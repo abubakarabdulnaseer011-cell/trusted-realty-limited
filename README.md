@@ -56,6 +56,7 @@ app/
   contact/
   insights/
   investors/
+  manifest.ts
   markets/
   properties/
   services/
@@ -128,6 +129,7 @@ Create a `.env.local` file for local development when you want live email delive
 
 ```bash
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+GOOGLE_SITE_VERIFICATION=
 RESEND_API_KEY=
 CONTACT_TO_EMAIL=
 CONTACT_FROM_EMAIL=
@@ -140,6 +142,9 @@ CONTACT_FROM_EMAIL=
 
 - `RESEND_API_KEY`
   Enables live email delivery through Resend from the contact endpoint.
+
+- `GOOGLE_SITE_VERIFICATION`
+  Optional Google Search Console verification token. When added, the app outputs the verification meta tag automatically so Google can confirm site ownership.
 
 - `CONTACT_TO_EMAIL`
   The destination inbox that should receive website inquiries.
@@ -266,9 +271,10 @@ The project already includes:
 - per-page metadata
 - Open Graph metadata
 - Twitter card metadata
-- organization structured data
+- organization, website, breadcrumb, and property structured data
 - dynamic sitemap
 - robots configuration
+- web app manifest
 - semantic headings and content structure
 - route-level property metadata for detail pages
 
@@ -280,7 +286,19 @@ lib/metadata.ts
 app/opengraph-image.tsx
 app/sitemap.ts
 app/robots.ts
+app/manifest.ts
 ```
+
+## Google Indexing Notes
+
+Google discovery is not instantaneous for a newly launched site. Google Search Central says crawling can take anywhere from a few days to a few weeks, and the supported ways to accelerate discovery are verifying the site in Search Console, submitting the sitemap, and requesting indexing for important URLs.
+
+This project is now prepared for that workflow:
+
+- the live canonical URL is `https://trusted-realty-limited.vercel.app`
+- `robots.txt` points Google to `/sitemap.xml`
+- the sitemap uses stable `lastmod` values instead of changing on every deploy
+- Search Console verification can be enabled by setting `GOOGLE_SITE_VERIFICATION`
 
 ## Vercel Deployment
 
@@ -292,6 +310,7 @@ app/robots.ts
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-production-domain.com
+GOOGLE_SITE_VERIFICATION=your_search_console_token
 RESEND_API_KEY=your_resend_api_key
 CONTACT_TO_EMAIL=hello@trustedrealtylimited.com
 CONTACT_FROM_EMAIL=inquiries@yourdomain.com

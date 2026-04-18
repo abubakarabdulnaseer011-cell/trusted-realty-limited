@@ -15,7 +15,7 @@ import {
   properties,
 } from "@/data/properties";
 import { formatArea, formatPriceLabel } from "@/lib/format";
-import { createMetadata } from "@/lib/metadata";
+import { absoluteUrl, createMetadata } from "@/lib/metadata";
 
 type PropertyPageProps = {
   params: Promise<{ slug: string }>;
@@ -57,9 +57,71 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
   }
 
   const relatedProperties = getRelatedProperties(property, 3);
+  const propertySchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Properties",
+            item: absoluteUrl("/properties"),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: property.title,
+            item: absoluteUrl(`/properties/${property.slug}`),
+          },
+        ],
+      },
+      {
+        "@type": "Offer",
+        price: property.price,
+        priceCurrency: "NGN",
+        url: absoluteUrl(`/properties/${property.slug}`),
+        availability: "https://schema.org/InStock",
+        itemOffered: {
+          "@type": property.category === "Commercial" ? "Place" : "SingleFamilyResidence",
+          name: property.title,
+          description: property.summary,
+          image: property.images.map((image) => absoluteUrl(image)),
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: property.location,
+            addressRegion: property.city,
+            addressCountry: "NG",
+          },
+          floorSize: {
+            "@type": "QuantitativeValue",
+            value: property.areaSqm,
+            unitCode: "MTK",
+          },
+          numberOfBathroomsTotal: property.bathrooms,
+          numberOfRooms: property.bedrooms || undefined,
+          amenityFeature: property.amenities.map((amenity) => ({
+            "@type": "LocationFeatureSpecification",
+            name: amenity,
+            value: true,
+          })),
+        },
+        seller: {
+          "@type": "Organization",
+          name: "TRUSTED REALTY LIMITED",
+          url: absoluteUrl("/"),
+        },
+      },
+    ],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(propertySchema) }}
+      />
       <section className="pt-32 sm:pt-36">
         <Container>
           <div className="flex flex-wrap items-center gap-3 text-sm text-[#a79c8f]">

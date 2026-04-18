@@ -298,7 +298,7 @@ This project is now prepared for that workflow:
 - the live canonical URL is `https://trusted-realty-limited.vercel.app`
 - `robots.txt` points Google to `/sitemap.xml`
 - the sitemap uses stable `lastmod` values instead of changing on every deploy
-- Search Console verification can be enabled by setting `GOOGLE_SITE_VERIFICATION`
+- Search Console verification can be enabled by setting `GOOGLE_SITE_VERIFICATION` for the HTML tag method, and the current production HTML-file verification path is already committed as a static file
 
 ## Vercel Deployment
 
